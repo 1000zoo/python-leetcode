@@ -28,3 +28,20 @@ class Solution:
 
         return -1
         
+    """
+    Runtime 32 ms Beats 92.41%
+    """
+    def specialArray(self, nums: list[int]) -> int:
+        length = len(nums)
+        freq = [0 for n in range(length + 1)]
+
+        for i in range(length):
+            freq[min(length, nums[i])] += 1
+        
+        prefix = 0
+        for i in range(length, 0, -1):
+            prefix += freq[i]
+            if i == prefix:
+                return i
+        
+        return -1
