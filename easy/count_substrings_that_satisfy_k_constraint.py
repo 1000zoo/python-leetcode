@@ -24,3 +24,28 @@ class Solution:
                     answer += 1
         
         return answer
+
+
+    """
+    Runtime 34 ms Beats 95.93%
+    """
+    def solution2(self, s: str, k: int) -> int:
+        answer = 0
+        l = 0
+        cnt0, cnt1 = 0, 0
+
+        for r in range(len(s)):
+            if s[r] == '0':
+                cnt0 += 1
+            else:
+                cnt1 += 1
+            
+            while not (cnt0 <= k or cnt1 <= k):
+                if s[l] == '0':
+                    cnt0 -= 1
+                else:
+                    cnt1 -= 1
+                l += 1
+            answer += (r - l + 1)
+
+        return answer
